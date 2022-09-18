@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>NFL Gambling</title>
+    </head>
+
+    <body>
+        <div id="main">
+            <header class="header">
+
+            </header>
+            <h1>NFL Gambling Tool</h1>
+            <button class="createBtns">Create Win Trends</button>
+            <button class="createBtns">Create Against The Spread Trends</button>
+            <button class="createBtns">Create Over/Under Trends</button>
+            <button class="displayBtns">Win Trends</button>
+            <button class="displayBtns">Against The Spread Trends</button>
+            <button class="displayBtns">Over/Under Trends</button>
+            <div id="table">
+                <table>
+                    <tr>
+                        <th>Team</th>
+                        <th>Win/Loss Record</th>
+                        <th>Win Percentage</th>
+                        <th>Margin of Victory</th>
+                        <th>Against the Spread +/-</th>
+                    </tr>
+                    <tr>
+                        {% for item in data %}
+                    </tr>
+                    <tr>
+                        <td>{{item.team_name}}</td>
+                        <td>{{item.win_loss}}</td>
+                        <td>{{item.win_percentage}}</td>
+                        <td>{{item.margin_of_victory}}</td>
+                        <td>{{item.ats_plus_minus}}</td>
+                    </tr>
+                        {% endfor %}
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
