@@ -20,7 +20,24 @@
                     </ul>
                 </nav>
             </header>
-            <h2>Click on a link to generate a table</h2>
+            <div id="table">
+                <table>
+                    <tr>
+                        {% for header in headings %}
+                        <th>{{ header }}</th>
+                        {% endfor %}
+                    </tr>
+                    {% for item in data %}
+                    <tr>
+                        <td>{{item.team_name}}</td>
+                        <td>{{item.over_record}}</td>
+                        <td>{{item.over_percentage}}</td>
+                        <td>{{item.under_percentage}}</td>
+                        <td>{{item.total_plus_minus}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </div>
     </body>
 </html>

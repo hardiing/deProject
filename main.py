@@ -1,7 +1,7 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 from mysql.connector import Error
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import mysql.connector as msql
@@ -17,10 +17,34 @@ mysql = MySQL(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def main():
+    return render_template('index.html')  # return web page with MySQL data
+
+@app.route('/win_trends', methods=['GET', 'POST'])
+def win_trends():
+    headings = ("Team", "Win/Loss Record", "Win Percentage", "Margin of Victory", "Against the Spread +/-")
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)  # create variable for connection
     cursor.execute("SELECT * FROM win_trends")  # execute query
     data = cursor.fetchall()  # fetch all from database
-    return render_template('index.html', data=data)  # return web page with MySQL data
+    cursor.close()
+    return render_template('win_trends.html', headings=headings, data=data)  # return web page with MySQL data
+
+@app.route('/ats_trends', methods=['GET', 'POST'])
+def ats_trends():
+    headings = ("Team", "ATS Record", "Cover Percentage", "Margin of Victory", "Against the Spread +/-")
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)  # create variable for connection
+    cursor.execute("SELECT * FROM ats_trends")  # execute query
+    data = cursor.fetchall()  # fetch all from database
+    cursor.close()
+    return render_template('ats_trends.html', headings=headings, data=data)  # return web page with MySQL data
+
+@app.route('/ou_trends', methods=['GET', 'POST'])
+def ou_trends():
+    headings = ("Team", "Over Record", "Over Percentage", "Under Percentage", "Total +/-")
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)  # create variable for connection
+    cursor.execute("SELECT * FROM ou_trends")  # execute query
+    data = cursor.fetchall()  # fetch all from database
+    cursor.close()
+    return render_template('ou_trends.html', headings=headings, data=data)  # return web page with MySQL data
 
 def create_win_trends():
     win_trends = 'https://www.teamrankings.com/nfl/trends/win_trends/'
@@ -118,7 +142,7 @@ def create_ou_trends():
     except Error as e:
         print('Error while connecting to mySQL', e)
 
-def connect_to_msql():
+def create_db():
     choice = input('Press one to create database: ')
     if choice == 1:
         try:
@@ -133,7 +157,7 @@ def connect_to_msql():
         return
 
 if __name__ == '__main__':
-    connect_to_msql()
+    # create_db()
     # create_win_trends()
     # create_ats_trends()
     # create_ou_trends()
