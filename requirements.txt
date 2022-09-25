@@ -1,0 +1,5 @@
+beautifulsoup4==4.11.1
+mysql-connector-python==8.0.30
+Flask==2.2.2
+Flask-MySQLdb==1.0.1
+pandas==1.4.4

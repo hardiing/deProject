@@ -161,6 +161,6 @@ if __name__ == '__main__':
     # create_win_trends()
     # create_ats_trends()
     # create_ou_trends()
-    app.run()
+    app.run(debug=True, port=5000)
 
 
