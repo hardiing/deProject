@@ -1,14 +1,14 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import pandas as pd
 
 app = Flask(__name__)
 app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'nathan'
-app.config['MYSQL_PASSWORD'] = 'hannat'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'root'
 app.config['MYSQL_DB'] = 'football'
 
 mysql = MySQL(app)
@@ -113,6 +113,15 @@ def ou_trends():
     data = cursor.fetchall()  # fetch all from database
     cursor.close()
     return render_template('ou_trends.html', headings=headings, data=data)  # return web page with MySQL data
+
+@app.route('/custom_trends', methods=['GET', 'POST'])
+def custom_trends():
+    headings = ("Team", "ATS Record", "Cover Percentage", "Margin of Victory")
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)  # create variable for connection
+    cursor.execute('SELECT win_trends.team_name, ats_trends.ats_record, ats_trends.cover_percentage, win_trends.margin_of_victory FROM win_trends INNER JOIN ats_trends ON win_trends.team_name=ats_trends.team_name;')  # execute query
+    data = cursor.fetchall()  # fetch all from database
+    cursor.close()
+    return render_template('custom_trends.html', headings=headings, data=data)  # return web page with MySQL data
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
