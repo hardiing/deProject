@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="{{ url_for("static", filename="style.css") }}">
         <title>NFL Gambling</title>
     </head>
 
@@ -14,10 +14,10 @@
                 <nav>
                     <h1>NFL Gambling Tool</h1>
                     <ul>
-                        <li><a href="{{ url_for('win_trends') }}">Win Trends</a></li>
-                        <li><a href="{{ url_for('ats_trends') }}">Against the Spread Trends</a></li>
-                        <li><a href="{{ url_for('ou_trends') }}">Over/Under Trends</a></li>
-                        <li><a href="{{ url_for('custom_trends') }}">Custom Table</a></li>
+                        <li><a href="{{ url_for("win_trends") }}">Win Trends</a></li>
+                        <li><a href="{{ url_for("ats_trends") }}">Against the Spread Trends</a></li>
+                        <li><a href="{{ url_for("ou_trends") }}">Over/Under Trends</a></li>
+                        <li><a href="{{ url_for("custom_trends") }}">Custom Table</a></li>
                     </ul>
                 </nav>
             </header>
