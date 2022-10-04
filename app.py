@@ -45,7 +45,6 @@ def win_trends():
     for i, row in win_df.iterrows():
         sql = 'INSERT INTO football.win_trends VALUES (%s,%s,%s,%s,%s)'
         cur.execute(sql, tuple(row))
-        print('Record inserted')
         mysql.connection.commit()
 
     #  headings variable to display table in flask app
@@ -77,13 +76,10 @@ def ats_trends():
 
     cur = mysql.connection.cursor()
     cur.execute('DROP TABLE IF EXISTS ats_trends;')
-    print('Creating table...')
     cur.execute('CREATE TABLE ats_trends (team_name VARCHAR(255), ats_record VARCHAR(255), cover_percentage VARCHAR(255), margin_of_victory INT, ats_plus_minus INT);')
-    print('Table is created...')
     for i, row in ats_df.iterrows():
         sql = 'INSERT INTO football.ats_trends VALUES (%s,%s,%s,%s,%s)'
         cur.execute(sql, tuple(row))
-        print('Record inserted')
         mysql.connection.commit()
 
     headings = ("Team", "ATS Record", "Cover Percentage", "Margin of Victory", "Against the Spread +/-")
@@ -109,13 +105,10 @@ def ou_trends():
 
     cur = mysql.connection.cursor()
     cur.execute('DROP TABLE IF EXISTS ou_trends;')
-    print('Creating table...')
     cur.execute('CREATE TABLE ou_trends (team_name VARCHAR(255), over_record VARCHAR(255), over_percentage VARCHAR(255), under_percentage VARCHAR(255), total_plus_minus INT);')
-    print('Table is created...')
     for i, row in ou_df.iterrows():
         sql = 'INSERT INTO football.ou_trends VALUES (%s,%s,%s,%s,%s)'
         cur.execute(sql, tuple(row))
-        print('Record inserted')
         mysql.connection.commit()
 
     headings = ("Team", "Over Record", "Over Percentage", "Under Percentage", "Total +/-")
