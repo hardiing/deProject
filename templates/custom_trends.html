@@ -21,16 +21,22 @@
                     </ul>
                 </nav>
             </header>
-            <div class="text">
-                <h2>Data found in each table:</h2><br>
-                <p><b>Win Trends:</b> Win/Loss Records, Winning Percentage, Margin of Victory, and Against the Spread +/-</p><br>
-                <p><b>Against the Spread Trends:</b> Against the Spread Record, Cover Percentage, Margin of Victory, and Against the Spread +/-</p><br>
-                <p><b>Over/Under Trends:</b> Over Record, Over Percentage, Under Percentage, and Total +/-</p><br>
-                <p><b>Custom Table:</b> Against the Spread Record, Cover Percentage, and Margin of Victory</p><br>
-                <h2>About the project:</h2><br>
-                <p>A web scraping application to collect multiple tables with data that can be used to study trends in the NFL
-                    regarding gambling. Includes a custom table joining data from multiple tables built with an SQL query.</p><br>
-                <p>Technologies used: Python, Flask, Docker, MySQL, HTML/CSS</p>
+            <div id="table">
+                <table>
+                    <tr>
+                        {% for header in headings %}
+                        <th>{{ header }}</th>
+                        {% endfor %}
+                    </tr>
+                    {% for item in data %}
+                    <tr>
+                        <td>{{item.team_name}}</td>
+                        <td>{{item.ats_record}}</td>
+                        <td>{{item.cover_percentage}}</td>
+                        <td>{{item.margin_of_victory}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
             </div>
         </div>
     </body>
