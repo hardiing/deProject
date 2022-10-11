@@ -13,5 +13,7 @@ docker-compose up --build
 ```
 
 Once the containers are up and running, go to localhost:5000 to access the application.
+
 ctrl-c to stop the containers when finished.
+
 docker-compose down to shut down the containers
