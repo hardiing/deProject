@@ -7,9 +7,10 @@ regarding gambling. Includes a custom table joining data from multiple tables bu
 
 ## HOW TO USE:
 With Docker and Docker Compose installed:
-...
+
+```
 docker-compose up --build
-...
+```
 
 Once the containers are up and running, go to localhost:5000 to access the application.
 ctrl-c to stop the containers when finished.
